@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Section } from "./section";
 
 type TaskCard = {
   task: string;
@@ -67,18 +66,12 @@ const cards: TaskCard[] = [
 
 export function PatternByTask() {
   return (
-    <Section
-      number="03"
-      eyebrow="Choose by task"
-      title={<>Pick a pattern by what you need it to do.</>}
-      lede={
-        <>
-          Multi-agent reasoning is most useful when the task is named clearly.
-          Find your task; the pattern follows.
-        </>
-      }
-    >
-      <ul className="grid gap-px overflow-hidden rounded-md border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
+    <section className="px-5 py-10 md:px-8 md:py-14">
+      <div className="mx-auto max-w-6xl">
+        <p className="mb-6 font-mono text-xs uppercase tracking-wider text-subtle">
+          Choose a pattern by task
+        </p>
+        <ul className="grid gap-px overflow-hidden rounded-md border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
         {cards.map((card) => {
           const inner = (
             <article className="flex h-full flex-col gap-4 bg-surface p-6 transition-colors hover:bg-surface-2">
@@ -141,7 +134,8 @@ export function PatternByTask() {
             </li>
           );
         })}
-      </ul>
-    </Section>
+        </ul>
+      </div>
+    </section>
   );
 }
