@@ -73,7 +73,7 @@ const cards: TaskCard[] = [
 
 export function PatternByTask() {
   return (
-    <section className="px-5 py-12 md:px-8 md:py-16">
+    <section className="border-t border-border bg-surface-2 px-5 py-12 md:px-8 md:py-16">
       <div className="mx-auto max-w-6xl">
         <p className="mb-8 font-mono text-xs uppercase tracking-wider text-subtle">
           Choose a pattern by task
