@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
-    Monaco, Consolas, monospace;
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, SFMono-Regular,
+    Menlo, Monaco, Consolas, monospace;
 
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -17,31 +17,32 @@
   --color-accent-fg: var(--accent-fg);
 }
 
+/* Light mode — warm cream palette in sRGB hex for cross-browser parity. */
 :root {
-  --bg: oklch(97.5% 0.005 95);
-  --surface: oklch(99% 0.003 95);
-  --surface-2: oklch(94.5% 0.008 95);
-  --fg: oklch(20% 0.012 270);
-  --muted: oklch(45% 0.012 270);
-  --subtle: oklch(60% 0.01 270);
-  --border: oklch(89% 0.008 95);
-  --border-strong: oklch(80% 0.01 95);
-  --accent: oklch(55% 0.14 250);
-  --accent-fg: oklch(98% 0.005 95);
+  --bg: #faf8f3;
+  --surface: #fdfcf8;
+  --surface-2: #f1ede2;
+  --fg: #1c1f24;
+  --muted: #5a5a55;
+  --subtle: #8b8b85;
+  --border: #e3ddcf;
+  --border-strong: #cdc4ad;
+  --accent: #2d6cc0;
+  --accent-fg: #fdfcf8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: oklch(13% 0.008 270);
-    --surface: oklch(15% 0.008 270);
-    --surface-2: oklch(18% 0.008 270);
-    --fg: oklch(96% 0.004 270);
-    --muted: oklch(70% 0.012 270);
-    --subtle: oklch(54% 0.01 270);
-    --border: oklch(24% 0.008 270);
-    --border-strong: oklch(34% 0.01 270);
-    --accent: oklch(82% 0.07 250);
-    --accent-fg: oklch(15% 0.008 270);
+    --bg: #14161b;
+    --surface: #181b21;
+    --surface-2: #1e2229;
+    --fg: #ecedf0;
+    --muted: #aaadb5;
+    --subtle: #7a7d85;
+    --border: #2d3038;
+    --border-strong: #41454e;
+    --accent: #7fb1f2;
+    --accent-fg: #14161b;
   }
 }
 
