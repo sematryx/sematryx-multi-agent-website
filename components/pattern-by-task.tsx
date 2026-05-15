@@ -1,0 +1,147 @@
+import Link from "next/link";
+import { Section } from "./section";
+
+type TaskCard = {
+  task: string;
+  useWhen: string;
+  pattern: string;
+  status: "shipping" | "planned";
+  output: string;
+  href?: string;
+};
+
+const cards: TaskCard[] = [
+  {
+    task: "Challenge a draft answer",
+    useWhen:
+      "You want agents to find gaps, weak claims, or missing caveats in an answer that already looks reasonable.",
+    pattern: "Adversarial Round-Robin Debate",
+    status: "shipping",
+    output: "revised answer, critique trace, contested claims",
+    href: "/patterns/adversarial-debate",
+  },
+  {
+    task: "Surface hidden assumptions",
+    useWhen:
+      "The problem may contain unstated premises or sycophancy traps the proposer would otherwise miss.",
+    pattern: "Adversarial Round-Robin Debate",
+    status: "shipping",
+    output: "assumptions, objections, confidence notes",
+    href: "/patterns/adversarial-debate",
+  },
+  {
+    task: "Compare competing reasoning paths",
+    useWhen:
+      "Multiple plausible answers exist and you want to see them side-by-side rather than collapsed into one.",
+    pattern: "K-fold reasoning · self-consistency",
+    status: "planned",
+    output: "variance, disagreement, consensus summary",
+  },
+  {
+    task: "Estimate uncertainty through disagreement",
+    useWhen:
+      "Answer confidence matters more than producing a single fluent response.",
+    pattern: "K-fold reasoning",
+    status: "planned",
+    output: "disagreement signal, confidence distribution",
+  },
+  {
+    task: "Decide whether multi-agent is worth the cost",
+    useWhen:
+      "You need to know if a pattern actually helps on your task before adopting it.",
+    pattern: "Benchmark harness",
+    status: "shipping",
+    output: "Δ quality, cost ×, latency ×",
+    href: "/benchmarks",
+  },
+  {
+    task: "Inspect contested claims and trace output",
+    useWhen:
+      "You need transparency into where agents agreed, disagreed, and what changed across turns.",
+    pattern: "All Sematryx patterns",
+    status: "shipping",
+    output: "structured trace, contested claims, cost summary",
+    href: "/docs",
+  },
+];
+
+export function PatternByTask() {
+  return (
+    <Section
+      number="03"
+      eyebrow="Choose by task"
+      title={<>Pick a pattern by what you need it to do.</>}
+      lede={
+        <>
+          Multi-agent reasoning is most useful when the task is named clearly.
+          Find your task; the pattern follows.
+        </>
+      }
+    >
+      <ul className="grid gap-px overflow-hidden rounded-md border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
+        {cards.map((card) => {
+          const inner = (
+            <article className="flex h-full flex-col gap-4 bg-surface p-6 transition-colors hover:bg-surface-2">
+              <header className="flex items-start justify-between gap-2">
+                <h3 className="text-balance text-lg font-medium tracking-tight">
+                  {card.task}
+                </h3>
+                <span
+                  className={
+                    card.status === "shipping"
+                      ? "shrink-0 rounded-full border border-accent/30 bg-accent/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-accent"
+                      : "shrink-0 rounded-full border border-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-subtle"
+                  }
+                >
+                  {card.status === "shipping" ? "0.1" : "planned"}
+                </span>
+              </header>
+
+              <p className="text-sm text-muted">
+                <span className="font-mono text-xs uppercase tracking-wider text-subtle">
+                  Use when ·{" "}
+                </span>
+                {card.useWhen}
+              </p>
+
+              <dl className="mt-auto space-y-2 border-t border-border pt-4 text-sm">
+                <div>
+                  <dt className="font-mono text-[11px] uppercase tracking-wider text-subtle">
+                    Pattern
+                  </dt>
+                  <dd className="mt-0.5 font-mono text-xs text-fg">
+                    {card.pattern}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-mono text-[11px] uppercase tracking-wider text-subtle">
+                    Output
+                  </dt>
+                  <dd className="mt-0.5 text-muted">{card.output}</dd>
+                </div>
+              </dl>
+
+              {card.href ? (
+                <p className="mt-2 font-mono text-xs text-accent">
+                  Read more →
+                </p>
+              ) : null}
+            </article>
+          );
+
+          return (
+            <li key={card.task}>
+              {card.href ? (
+                <Link href={card.href} className="block h-full">
+                  {inner}
+                </Link>
+              ) : (
+                inner
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </Section>
+  );
+}

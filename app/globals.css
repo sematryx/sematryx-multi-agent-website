@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, monospace;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+}
+
+:root {
+  --bg: oklch(99% 0.002 270);
+  --surface: oklch(100% 0 0);
+  --surface-2: oklch(97.5% 0.003 270);
+  --fg: oklch(18% 0.01 270);
+  --muted: oklch(43% 0.012 270);
+  --subtle: oklch(60% 0.01 270);
+  --border: oklch(91% 0.004 270);
+  --border-strong: oklch(82% 0.006 270);
+  --accent: oklch(40% 0.05 250);
+  --accent-fg: oklch(99% 0.002 270);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: oklch(13% 0.008 270);
+    --surface: oklch(15% 0.008 270);
+    --surface-2: oklch(18% 0.008 270);
+    --fg: oklch(96% 0.004 270);
+    --muted: oklch(70% 0.012 270);
+    --subtle: oklch(54% 0.01 270);
+    --border: oklch(24% 0.008 270);
+    --border-strong: oklch(34% 0.01 270);
+    --accent: oklch(82% 0.07 250);
+    --accent-fg: oklch(15% 0.008 270);
+  }
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* hairline rules used as visual section anchors */
+.rule {
+  height: 1px;
+  background: var(--border);
+}
+
+/* monospace numeric grid for benchmark-style tables */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
